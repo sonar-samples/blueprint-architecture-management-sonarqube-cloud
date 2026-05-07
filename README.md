@@ -1,5 +1,7 @@
 # Get started managing your architecture with SonarQube
 
+> Last verified: May 2026
+
 ## TL;DR overview
 
 * SonarQube Cloud generates an interactive architecture map from your source code at every analysis, showing your project's current architecture.
