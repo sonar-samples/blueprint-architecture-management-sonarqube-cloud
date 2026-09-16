@@ -28,11 +28,11 @@ This guide walks through each of these using Microsoft's [GCToolKit](https://git
 
 The current architecture is updated automatically at every analysis, so it is always current and includes every new code commit. Open the **Architecture** tab in your project sidebar and you'll see four sections: **Current Architecture**, **Intended Architecture**, **Deviations,** and **Flaws**:
 
-![](screenshots/1.png)
+![Architecture dashboard with Current Architecture, Intended Architecture, Deviations, and Flaws sections](screenshots/1.png)
 
 Click into **Current Architecture** to open the **architecture map**:
 
-![](screenshots/2.png)
+![Current architecture map for the GCToolKit project](screenshots/2.png)
 
 ### Reading the architecture map
 
@@ -53,15 +53,15 @@ The architecture map supports a few ways to explore:
 
 **Click any item** to see its specific relationships. Click a class and you'll see arrows to every other class it uses or is used by, including across package and module boundaries. This is how you trace a single component's relationships through the codebase:
 
-![](screenshots/3.png)
+![Architecture map highlighting the relationships for a selected class](screenshots/3.png)
 
 **High-level mode:** When you click a module, the number of individual dependency arrows can make the view unreadable. Switch to high-level mode (toggle in the UI) and the individual arrows between child components are collapsed into single arrows between their parent containers, giving you a cleaner view of the top-level relationships without the noise of every underlying dependency. You can then click a specific package within the module to narrow the view to solely *that* package's external relationships:
 
-![](screenshots/4.png)
+![High-level architecture map with child relationships collapsed into parent relationships](screenshots/4.png)
 
 **Pan and zoom:** zoom in to see class names and detailed structures; zoom out to see the full dependency picture. When relationships go off-screen, pan to follow them, or zoom out to see where they lead. This allows you to trace relationships across your entire codebase:
 
-![](screenshots/5.png)
+![Zoomed-out architecture map showing relationships across the codebase](screenshots/5.png)
 
 ### What the map tells you (before you define anything)
 
@@ -79,11 +79,11 @@ The current architecture shows you what exists but the **intended architecture**
 
 Navigate to **Intended Architecture** in the Architecture dashboard. On a first visit, you'll find one box for each language found in your codebase. As GCToolKit is a pure Java project, there's a single Java box:
 
-![](screenshots/6.png)
+![Intended architecture editor showing a single Java language container](screenshots/6.png)
 
 **Permissions:** Defining the intended architecture requires the proper "Administer Architecture" permission; without this, the editor is read-only. Viewing the architecture map and deviations, however, does not require special permission. Configure permissions as needed:
 
-![](screenshots/7.png)
+![SonarQube Cloud permission settings for administering architecture](screenshots/7.png)
 
 ### How the intended architecture definition works
 
@@ -106,7 +106,7 @@ Click to add your top-level modules to the model. For GCToolKit, add three modul
 2. `integration`
 3. `parser`
 
-![](screenshots/8.png)
+![Intended architecture with api, integration, and parser modules](screenshots/8.png)
 
 ### Defining allowed relationships
 
@@ -115,7 +115,7 @@ With the modules in place, draw the allowed relationships:
 - `parser` → `api`
 - `integration` → `api`
 
-![](screenshots/9.png)
+![Allowed relationships from parser and integration to api](screenshots/9.png)
 
 That's it; by not drawing anything else, you've effectively said:
 
@@ -135,7 +135,7 @@ For example, inside one of GCToolKit's modules, you might add the packages `jvm`
 
 You can only draw relationships between sibling components at the same level, under the same parent. Any more-distant relationships are already governed by the parent-level definitions:
 
-![](screenshots/10.png)
+![Package-level intended architecture with relationships among sibling components](screenshots/10.png)
 
 ### Saving the changes
 
@@ -147,7 +147,7 @@ Changes are not applied until you click **Save**. The next analysis (after savin
 
 After saving your intended architecture, run a new analysis. When it completes, navigate to the **Deviations** section of the Architecture dashboard:
 
-![](screenshots/11.png)
+![Architecture deviations dashboard after analyzing the intended architecture](screenshots/11.png)
 
 ### Relationships deviations
 
@@ -164,15 +164,15 @@ A software developer doesn't need to open the Architecture dashboard. Architectu
 
 Open your analysis summary and click on **New Issues**:
 
-![](screenshots/12.png)
+![SonarQube Cloud analysis summary with a link to new issues](screenshots/12.png)
 
 Inspect the list of issues that have arisen:
 
-![](screenshots/13.png)
+![Issue list containing architecture-related maintainability issues](screenshots/13.png)
 
 And examine a given issue:
 
-![](screenshots/14.png)
+![Architecture issue detail identifying the code-level reference to fix](screenshots/14.png)
 
 ### Architecture deviations
 
@@ -184,15 +184,15 @@ The intended architecture editor also supports structural operations by way of t
 
 **Rename:** change the name of a component in the model. SonarQube issues will reference the intended new name.
 
-![](screenshots/15.png)
+![Intended architecture component menu with structural modeling operations](screenshots/15.png)
 
 After saving and re-analyzing, structural changes appear in the **Deviations** dashboard alongside relationships deviations:
 
-![](screenshots/16.png)
+![Deviations dashboard showing structural differences from the intended architecture](screenshots/16.png)
 
 You can inspect any issues that have arisen as a result of the structural changes. As noted earlier, a software developer can bypass the Architecture dashboard entirely and inspect issues directly from the analysis summary:
 
-![](screenshots/17.png)
+![Analysis summary showing issues caused by structural architecture deviations](screenshots/17.png)
 
 ### How deviations become actionable
 
